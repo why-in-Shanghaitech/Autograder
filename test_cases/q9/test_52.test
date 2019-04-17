@@ -1,0 +1,10 @@
+# This is a basic ShiftRows test
+class: "IOTest"
+algorithm: "ShiftRows"
+
+# Below is the state to be processed
+state: "[164, 188, 62, 57, 199, 29, 31, 240, 240, 30, 254, 15, 191, 59, 83, 27]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

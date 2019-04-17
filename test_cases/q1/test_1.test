@@ -1,0 +1,9 @@
+# This is a basic code to state conversion test
+class: "IOTest"
+algorithm: "stateOf"
+
+# Below is the code to be converted to state
+code: "0x3243f6a8885a308d313198a2e0370734"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."

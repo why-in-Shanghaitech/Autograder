@@ -1,0 +1,10 @@
+# This is a basic InvMixColumns test
+class: "IOTest"
+algorithm: "InvMixColumns"
+
+# Below is the state to be processed
+state: "[95, 76, 231, 180, 209, 217, 224, 31, 98, 22, 123, 14, 40, 97, 111, 221]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

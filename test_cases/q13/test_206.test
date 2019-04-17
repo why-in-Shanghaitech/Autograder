@@ -1,0 +1,11 @@
+# This is a basic AddRoundKey test
+class: "IOTest"
+algorithm: "AddRoundKey"
+
+# Below is the state to be processed
+state: "[141, 227, 70, 67, 99, 159, 228, 9, 137, 34, 238, 250, 153, 232, 251, 137]"
+roundKey: "[[101, 200, 64, 100], [125, 65, 173, 248], [65, 235, 211, 217], [41, 30, 173, 92]]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

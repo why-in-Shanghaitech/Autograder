@@ -1,0 +1,11 @@
+# This is a basic AES encode test
+class: "IOTest"
+algorithm: "AES_enc"
+
+# Below is the AES to be processed
+keylen: "192"
+key: "0x000102030405060708090a0b0c0d0e0f1011121314151617"
+msg: "0x00112233445566778899aabbccddeeff"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."

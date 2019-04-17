@@ -1,0 +1,16 @@
+# This is a basic AESCBC decode test
+class: "IOTest"
+algorithm: "AESCBC_dec"
+
+# Below is the AES to be processed
+keylen: "128"
+key: "0xdee73afb888af54480b9a8be5ee4fb4e"
+ciph: "0xec201d009dc9c751dcd4d00bda2e4771cd7c0649ed5606c4063830d76336c6a944327cd5f244f36234becfa92ba605c37ea11f99c1fda6105b20347b60658cb321cd9dea99206584d220fbfc9829b82410638a50bf939f5122c985d833b72de7"
+ciphlen: "96"
+iv: "0xa1be98771cbc91f04c9e086e65afac80"
+msg_file: "'test_file.in'"
+ciph_file: "'test_file.out'"
+pad: "False"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."

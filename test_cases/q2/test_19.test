@@ -1,0 +1,12 @@
+# This is a basic state to code conversion test
+class: "IOTest"
+algorithm: "codeOf"
+
+# Below is the state to be converted to code
+state: """
+[186, 1, 227, 29, 141, 95, 47, 146, 33, 136, 19, 16, 31, 250, 236, 122]
+"""
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

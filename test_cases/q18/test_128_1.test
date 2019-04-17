@@ -1,0 +1,16 @@
+# This is a basic AESCBC decode test
+class: "IOTest"
+algorithm: "AESCBC_dec"
+
+# Below is the AES to be processed
+keylen: "128"
+key: "0x9369b32c9c0df838f53fed0f9d5766d4"
+ciph: "0x56ba8bbcb11462f2fa1c98e32a6baa31cef2cb51b9f925c2a74e0dabd45a69237d037b76217df22286c44b3e294b63ef"
+ciphlen: "48"
+iv: "0xed522fda7d03a9747c40bc965687f66b"
+msg_file: "'test_file.in'"
+ciph_file: "'test_file.out'"
+pad: "True"
+
+# The tricky part of the test
+trickyPart: "When ciphlen is 16*n bytes and pad is true, 16*'16' should be removed in the end of the ciph."

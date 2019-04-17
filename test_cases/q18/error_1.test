@@ -1,0 +1,16 @@
+# This is a basic AESCBC decode test
+class: "ExceptionTest"
+algorithm: "AESCBC_dec"
+
+# Below is the AES to be processed
+keylen: "128"
+key: "0x2b7e151628aed2a6abf7158809cf4f3c"
+ciph: "0x3243f6a8885a308d313198a2e0370734face"
+ciphlen: "18"
+iv: "0x0"
+msg_file: "0xface100"
+ciph_file: "'test_file.out'"
+pad: "True"
+
+# The tricky part of the test
+trickyPart: "msg_file is not str."

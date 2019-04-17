@@ -1,0 +1,10 @@
+# This is a basic AES init and getKey test
+class: "ExceptionTest"
+algorithm: "AES_init"
+
+# Below is the state to be processed
+keylen: "128"
+key: "'not an int'"
+
+# The tricky part of the test
+trickyPart: "key is not an int."

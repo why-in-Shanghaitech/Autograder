@@ -1,0 +1,9 @@
+# This is a basic rotword test
+class: "IOTest"
+algorithm: "RotWord"
+
+# Below is the word to be processed
+word: "[0x86, 0x32, 0x18, 0x45]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."

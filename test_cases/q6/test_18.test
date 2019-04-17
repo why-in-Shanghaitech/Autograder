@@ -1,0 +1,11 @@
+# This is a basic keyExpansion test
+class: "IOTest"
+algorithm: "keyExpansion"
+
+# Below is the key to be processed
+key: "119947978760620585525464301313457080807"
+Nk: "4"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

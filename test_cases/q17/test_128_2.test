@@ -1,0 +1,16 @@
+# This is a basic AESCBC encode test
+class: "IOTest"
+algorithm: "AESCBC_enc"
+
+# Below is the AES to be processed
+keylen: "128"
+key: "0x9acc28a1c035f15e582fc15678909b98"
+msg: "0xea97ac4cb74d01e6"
+msglen: "16"
+iv: "0xa1cafcae538249ce019c4320d48f1f0f"
+msg_file: "'test_file.in'"
+ciph_file: "'test_file.out'"
+pad: "True"
+
+# The tricky part of the test
+trickyPart: "When msglen is 16*n bytes and pad is true, 16*'16' should be added in the end of the msg."

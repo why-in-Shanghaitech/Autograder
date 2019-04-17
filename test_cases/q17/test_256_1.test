@@ -1,0 +1,16 @@
+# This is a basic AESCBC encode test
+class: "IOTest"
+algorithm: "AESCBC_enc"
+
+# Below is the AES to be processed
+keylen: "256"
+key: "0xe9be2a6e16a544bd4f7dea24075cc4ce55bb69703a2d864c938668b59c95a198"
+msg: "0x3eaf31c0b540195dfb7fdff600467eab1dc1056dcb3dbcd249d7006180a817ae182f8b218476d3c40f5b93499c10b50783c415a3f04fd68ab6559443fe8850c7846c769a345b4a7af4a55f94947e7f8c1a0a4e88cfacdb665b953dc669f308db297300a827668319d16aa25ef61fd29ee3864eec1c3a265a682d47cf584ef5d14130264e892d5db69b2c4e6ebbc81f534c332af27e0bb5b063aa63971fbfe6f2a75e87538a29bb22a33824573a9b3a6c199ca7f37cd29782e3e9d5"
+msglen: "374"
+iv: "0x5db710fd433968ae2923a515aee85c8b"
+msg_file: "'test_file.in'"
+ciph_file: "'test_file.out'"
+pad: "True"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."

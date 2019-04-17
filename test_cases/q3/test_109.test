@@ -1,0 +1,10 @@
+# This is a basic rotword test
+class: "IOTest"
+algorithm: "RotWord"
+
+# Below is the word to be processed
+word: "[215, 215, 214, 211]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

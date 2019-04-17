@@ -1,0 +1,10 @@
+# This is a basic MixColumns test
+class: "IOTest"
+algorithm: "MixColumns"
+
+# Below is the state to be processed
+state: "[219, 205, 149, 99, 155, 25, 187, 86, 44, 206, 41, 28, 30, 119, 118, 165]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

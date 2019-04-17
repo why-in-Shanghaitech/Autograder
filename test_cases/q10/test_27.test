@@ -1,0 +1,10 @@
+# This is a basic InvShiftRows test
+class: "IOTest"
+algorithm: "InvShiftRows"
+
+# Below is the state to be processed
+state: "[34, 197, 67, 173, 181, 75, 32, 169, 225, 167, 211, 84, 201, 120, 183, 230]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

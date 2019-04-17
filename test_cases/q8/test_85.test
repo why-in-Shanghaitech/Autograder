@@ -1,0 +1,10 @@
+# This is a basic InvSubBytes test
+class: "IOTest"
+algorithm: "InvSubBytes"
+
+# Below is the state to be processed
+state: "[210, 222, 163, 138, 173, 238, 223, 171, 225, 28, 69, 167, 77, 187, 94, 244]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

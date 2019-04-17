@@ -1,0 +1,16 @@
+# This is a basic AESCBC decode test
+class: "ExceptionTest"
+algorithm: "AESCBC_dec"
+
+# Below is the AES to be processed
+keylen: "128"
+key: "0x2b7e151628aed2a6abf7158809cf4f3c"
+ciph: "0x3243f6a8885a308d313198a2e0370734face"
+ciphlen: "18"
+iv: "0xb8dee56ffe5f09b6721f7b3f47953f81"
+msg_file: "'test_file.in'"
+ciph_file: "'test_file.out'"
+pad: "False"
+
+# The tricky part of the test
+trickyPart: "the input is not a multiple of 128 bits."

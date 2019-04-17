@@ -1,0 +1,16 @@
+# This is a basic AESCBC decode test
+class: "IOTest"
+algorithm: "AESCBC_dec"
+
+# Below is the AES to be processed
+keylen: "256"
+key: "0x43066c843ce1cd71fac1467261e772ac59f9d37e484e8e082408c42e981fb9e0"
+ciph: "0x0"
+ciphlen: "0"
+iv: "0x933a469840a59fb10f061d700b3431e7"
+msg_file: "'test_file.in'"
+ciph_file: "'test_file.out'"
+pad: "False"
+
+# The tricky part of the test
+trickyPart: "Empty input."

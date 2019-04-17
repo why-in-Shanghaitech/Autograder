@@ -1,0 +1,10 @@
+# This is a basic XOR test
+class: "IOTest"
+algorithm: "XOR"
+
+# Below is the word to be processed
+items: "([71, 55, 148, 30], [172, 119, 102, 243])"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

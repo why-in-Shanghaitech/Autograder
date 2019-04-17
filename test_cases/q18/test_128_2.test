@@ -1,0 +1,16 @@
+# This is a basic AESCBC decode test
+class: "IOTest"
+algorithm: "AESCBC_dec"
+
+# Below is the AES to be processed
+keylen: "128"
+key: "0x934deb5855c2aee0423b53285643002a"
+ciph: "0xda005a5a352afbde44b88917905b907a1ccf0d2da7195d4536f9e29931e4fb6c86f6dae840cccb87554f9c8847f0a736f131bac3c60daa86df873431b9478e71f110b8b676b5f6e0422dfca7761d37c6a0c20fe2ef1ea1105cccc8004f24783affcc83f1c40911c9c17f8477e0ec60e7d8566f5ff64e9c6908135e7cebff28630aad5f0da1ee9932a10a96fd972b5bdab8c623e2a7e5e754e4d8ff44f78faba9eb8c762b84b4ac6f104092a78a942750aa9e8615a9d7be8e07fedc6bf25bd9f444f63c1c97c3edfe326301e3b6ebb3777edae0a27f8108f078609d1f3e9d718a59d25c1c006c160eae6ff6ff53e39bf8a0e1a821dd683c27956daeeb0c82c420311e206b4a8cb2cb915683393bef4aa7e27e21e85587f9dec8272e5c9e555b951925674cd0a44993da65d87161ca08da75dd783afecd086f34ef180aa364d7757a706e2ba36a008aededfc7e3480bbbbb46b5aab70228179f318ee0d1d33bdc5"
+ciphlen: "352"
+iv: "0x497f5a2ea9c5eb159c187c371a9bfa52"
+msg_file: "'test_file.in'"
+ciph_file: "'test_file.out'"
+pad: "True"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."

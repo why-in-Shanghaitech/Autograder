@@ -1,0 +1,10 @@
+# This is a basic SubBytes test
+class: "IOTest"
+algorithm: "SubBytes"
+
+# Below is the state to be processed
+state: "[103, 30, 241, 253, 78, 42, 30, 3, 223, 220, 177, 239, 61, 120, 155, 48]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

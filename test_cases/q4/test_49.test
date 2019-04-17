@@ -1,0 +1,10 @@
+# This is a basic subword test
+class: "IOTest"
+algorithm: "SubWord"
+
+# Below is the word to be processed
+word: "[166, 220, 79, 78]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

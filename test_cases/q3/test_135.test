@@ -1,0 +1,10 @@
+# This is a basic rotword test
+class: "IOTest"
+algorithm: "RotWord"
+
+# Below is the word to be processed
+word: "[8, 111, 119, 113]"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

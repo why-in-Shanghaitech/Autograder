@@ -1,0 +1,5 @@
+# This is the solution file for test_cases/q1/test_9.test.
+
+solution: """
+[221, 169, 124, 164, 134, 76, 223, 224, 110, 175, 112, 160, 236, 13, 113, 145]
+"""
