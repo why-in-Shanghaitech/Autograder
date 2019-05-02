@@ -1,0 +1,9 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "fromString"
+
+# Below is the input part.
+string: "'\\frac{1}{2}'"
+
+# The tricky part of the test
+trickyPart: "origin in testcase"

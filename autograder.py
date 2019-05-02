@@ -16,7 +16,7 @@ import optparse
 import os, sys
 from grading import TestParser, TestClass
 
-default_question_list = ['q1', 'q2']
+default_question_list = ['q1', 'q2', 'q3']
 
 def readCommand(argv):
     parser = optparse.OptionParser(description = 'Run public tests on student code')

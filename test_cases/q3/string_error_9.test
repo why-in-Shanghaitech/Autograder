@@ -1,0 +1,9 @@
+# Basic introduction.
+class: "ExceptionTest"
+algorithm: "fromString"
+
+# Below is the input part.
+string: "['+\t\\frac{+12}{20}']"
+
+# The tricky part of the test
+trickyPart: "not string."

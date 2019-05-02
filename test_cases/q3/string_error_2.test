@@ -1,0 +1,9 @@
+# Basic introduction.
+class: "ExceptionTest"
+algorithm: "fromString"
+
+# Below is the input part.
+string: "'+\\frac{+02}{20}'"
+
+# The tricky part of the test
+trickyPart: "+02 is not allowed"

@@ -1,0 +1,9 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "fromString"
+
+# Below is the input part.
+string: "'\t\r\n \r\t  -   \t\\frac{\t\r\n \n+12}{    20\t\r\n }\t\r\n   '"
+
+# The tricky part of the test
+trickyPart: "careful with blank"

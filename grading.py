@@ -31,7 +31,10 @@ class TestClass(object):
             "fractionInit": lambda: self.test(self.fractionInit),
             "privateParameter": lambda: self.test(self.privateParameter),
             "operator": lambda: self.test(self.operator),
-            "randomOperator": lambda: self.test(self.randomOperator, 5)
+            "randomOperator": lambda: self.test(self.randomOperator, 5),
+            "toFloat": lambda: self.test(self.toFloat),
+            "fromInt": lambda: self.test(self.fromInt),
+            "fromString": lambda: self.test(self.fromString)
         }
     
     def getResult(self):
@@ -216,6 +219,48 @@ class TestClass(object):
             ans = 'All passed.'
             correctAns = 'All passed.'
 
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def toFloat(self):
+        try:
+            import pyfraction
+
+            numerator = eval(self.test_dict['numerator'])
+            denominator = eval(self.test_dict['denominator'])
+            sign = eval(self.test_dict['sign'])
+
+            correctAns = eval(self.solution_dict['solution'])
+
+            parameter = pyfraction.Fraction(numerator, denominator, sign)
+            ans = parameter.to_float()
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def fromInt(self):
+        try:
+            import pyfraction
+
+            integer = eval(self.test_dict['int'])
+            correctAns = eval(self.solution_dict['solution'])
+
+            parameter = pyfraction.Fraction.from_integer(integer)
+            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative())
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def fromString(self):
+        try:
+            import pyfraction
+
+            string = eval(self.test_dict['string'])
+            correctAns = eval(self.solution_dict['solution'])
+
+            parameter = pyfraction.Fraction.from_string(string)
+            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative())
         except BaseException as e:
             ans = e
         return ans, correctAns

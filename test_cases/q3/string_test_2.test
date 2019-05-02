@@ -1,0 +1,9 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "fromString"
+
+# Below is the input part.
+string: "'\n - \t\\frac{\t0\n}{\r\r-20\t\r}\t\r'"
+
+# The tricky part of the test
+trickyPart: "0 is okay."

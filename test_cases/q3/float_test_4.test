@@ -1,0 +1,11 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "toFloat"
+
+# Below is the input part.
+numerator: "0"
+denominator: "9"
+sign: "'-'"
+
+# The tricky part of the test
+trickyPart: "-0/9"

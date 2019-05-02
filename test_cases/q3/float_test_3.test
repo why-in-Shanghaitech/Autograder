@@ -1,0 +1,11 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "toFloat"
+
+# Below is the input part.
+numerator: "1730984"
+denominator: "38904732"
+sign: "'-'"
+
+# The tricky part of the test
+trickyPart: "-1730984/38904732"

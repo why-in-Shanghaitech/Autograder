@@ -1,0 +1,11 @@
+# Basic introduction.
+class: "ExceptionTest"
+algorithm: "fromString"
+
+# Below is the input part.
+string: """
+'\\frac{+12}{"20"}'
+"""
+
+# The tricky part of the test
+trickyPart: "'' is not allowed. ({'20'})"
