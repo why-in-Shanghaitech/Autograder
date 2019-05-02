@@ -1,0 +1,9 @@
+# Basic introduction.
+class: "ExceptionTest"
+algorithm: "fromString"
+
+# Below is the input part.
+string: "'\\frac{+12} {0}{'"
+
+# The tricky part of the test
+trickyPart: "Don't split }{"
