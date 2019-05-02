@@ -156,7 +156,7 @@ class TestClass(object):
 
             for trial in range(1, times+1):
 
-                numerator_1, denominator_1, sign_1  = random.randint(1, 999999)*random.choice([1, -1]),\
+                numerator_1, denominator_1, sign_1  = random.randint(0, 999999)*random.choice([1, -1]),\
                                                       random.randint(1, 999999)*random.choice([1, -1]),\
                                                       random.choice(['+', '-'])
                 parameter_1 = pyfraction.Fraction(numerator_1, denominator_1, sign_1)
