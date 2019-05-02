@@ -1,10 +1,11 @@
-# This is a basic code to state conversion test
+# Basic introduction.
 class: "IOTest"
-algorithm: "stateOf"
+algorithm: "fractionInit"
 
-# Below is the code to be converted to state
-code: "260422449421642403541621827449670337852"
+# Below is the input part.
+numerator: "-12"
+denominator: "9"
+sign: "'+'"
 
 # The tricky part of the test
-trickyPart: "Nothing tricky."
-
+trickyPart: "Numbers can be negative."

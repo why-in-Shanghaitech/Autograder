@@ -1,11 +1,11 @@
 # Basic introduction.
 class: "IOTest"
-algorithm: "fractionInit"
+algorithm: "privateParameter"
 
 # Below is the input part.
 numerator: "12"
 denominator: "9"
-sign: "'+'"
+sign: "'-'"
 
 # The tricky part of the test
-trickyPart: "Nothing tricky."
+trickyPart: "All the names of the parameters should begin with '__' to get it private."

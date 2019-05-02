@@ -1,3 +1,0 @@
-# This is the solution file for test_cases/q15/error_2.test.
-
-solution: "aes.AESInputError()"

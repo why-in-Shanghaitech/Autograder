@@ -1,5 +1,0 @@
-# This is the solution file for test_cases/q1/test_13.test.
-
-solution: """
-[145, 64, 11, 145, 225, 153, 128, 222, 228, 94, 163, 225, 212, 193, 255, 87]
-"""

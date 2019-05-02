@@ -1,10 +1,11 @@
-# This is a basic code to state conversion test
+# Basic introduction.
 class: "IOTest"
-algorithm: "stateOf"
+algorithm: "fractionInit"
 
-# Below is the code to be converted to state
-code: "66814286504060421741230023322616923956"
+# Below is the input part.
+numerator: "0"
+denominator: "13"
+sign: "'-'"
 
 # The tricky part of the test
-trickyPart: "Nothing tricky."
-
+trickyPart: "Zero test. Denominator should be 1."

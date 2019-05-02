@@ -1,3 +1,0 @@
-# This is the solution file for test_cases/q17/error_7.test.
-
-solution: "aes.AESPaddingError()"

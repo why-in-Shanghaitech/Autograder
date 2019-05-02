@@ -1,10 +1,11 @@
-# This is a basic code to state conversion test
+# Basic introduction.
 class: "IOTest"
-algorithm: "stateOf"
+algorithm: "fractionInit"
 
-# Below is the code to be converted to state
-code: "294639413291332225833569969771736035729"
+# Below is the input part.
+numerator: "12"
+denominator: "True"
+sign: "'+'"
 
 # The tricky part of the test
-trickyPart: "Nothing tricky."
-
+trickyPart: "Use isinstance."

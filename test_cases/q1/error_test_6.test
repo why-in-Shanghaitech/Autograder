@@ -1,11 +1,11 @@
 # Basic introduction.
-class: "IOTest"
+class: "ExceptionTest"
 algorithm: "fractionInit"
 
 # Below is the input part.
-numerator: "12"
-denominator: "(-20)"
+numerator: "'12'"
+denominator: "0"
 sign: "'-'"
 
 # The tricky part of the test
-trickyPart: "Use isinstance."
+trickyPart: "numerator is not right."

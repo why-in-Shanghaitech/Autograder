@@ -1,10 +1,11 @@
-# This is a basic code to state conversion test
+# Basic introduction.
 class: "IOTest"
-algorithm: "stateOf"
+algorithm: "fractionInit"
 
-# Below is the code to be converted to state
-code: "75960790320075369159181001580855561010"
+# Below is the input part.
+numerator: "pyfraction.Fraction(202, 500)"
+denominator: "909"
+sign: "'+'"
 
 # The tricky part of the test
-trickyPart: "Nothing tricky."
-
+trickyPart: "Deal with fraction as input."

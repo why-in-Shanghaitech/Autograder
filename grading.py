@@ -14,8 +14,11 @@
 
 import re
 import sys
+import time_decorator
 
 class TestClass(object):
+
+    timeLimit = 2           # The time limit (in seconds) of each testcase
 
     def __init__(self, test_dict, solution_dict):
 
@@ -24,38 +27,38 @@ class TestClass(object):
         self.class_ = test_dict['class']
         self.algorithm_ = test_dict['algorithm']
 
-        self.algorithm_list = {
-            "stateOf": lambda: self.stateOf(),
-            "codeOf": lambda: self.codeOf(),
-            "RotWord": lambda: self.RotWord(),
-            "SubWord": lambda: self.SubWord(),
-            "XOR": lambda: self.XOR(),
-            "keyExpansion": lambda: self.keyExpansion(),
-            "SubBytes": lambda: self.SubBytes(),
-            "InvSubBytes": lambda: self.InvSubBytes(),
-            "ShiftRows": lambda: self.ShiftRows(),
-            "InvShiftRows": lambda: self.InvShiftRows(),
-            "MixColumns": lambda: self.MixColumns(),
-            "InvMixColumns": lambda: self.InvMixColumns(),
-            "AddRoundKey": lambda: self.AddRoundKey(),
-            "AES_init": lambda: self.AES_init(),
-            "AES_enc": lambda: self.AES_enc(),
-            "AES_dec": lambda: self.AES_dec(),
-            "AESCBC_enc": lambda: self.AESCBC_enc(),
-            "AESCBC_dec": lambda: self.AESCBC_dec()
+        self.algorithm_list = {      # The dict of all the algorithms that may be put into use
+            "fractionInit": lambda: self.test(self.fractionInit),
+            "privateParameter": lambda: self.test(self.privateParameter)
         }
     
     def getResult(self):
         return self.algorithm_list[self.algorithm_]()
+    
+    @time_decorator.time_limit(timeLimit)
+    def excuteTask(self, my_algorithm):
+        return my_algorithm()
+    
+    def test(self, my_algorithm):
+        
+        try:
+            ans, correctAns = self.excuteTask(my_algorithm)
+        except Exception as e:
+            ans, correctAns = e, "Solution not accessable due to TimeOutError. Please find it in file."
+        
+        if self.test_dict['class'] == 'IOTest':
+            return self.IOTest(ans, correctAns)
+        elif self.test_dict['class'] == 'ExceptionTest':
+            return self.ExceptionTest(ans, correctAns) 
 
     def IOTest(self, ans, correctAns):
-        if issubclass(type(ans), Exception):
-            if issubclass(type(ans), ImportError):
+        if isinstance(ans, BaseException):
+            if isinstance(ans, ImportError):
                 return False, '    ' + 'Code not found! Please check the path of your code.'
-            elif issubclass(type(ans), InterruptedError):
+            elif isinstance(ans, NotImplementedError):
                 return False, '    ' + 'Have not been implemented!'
             else:
-                return False, '    ' + 'Exception raised: ' + repr(ans) + ': ' + str(ans) + '\n*** ' +\
+                return False, '    ' + 'Exception raised: ' + type(ans).__name__ + ': ' + str(ans) + '\n*** ' +\
                               '    ' + '     Tricky part: ' + self.test_dict['trickyPart']
         elif ans != correctAns:
             return False, '    ' + 'Wrong answer!' + '\n*** ' +\
@@ -64,32 +67,16 @@ class TestClass(object):
                            '    ' + '   Tricky part: ' + self.test_dict['trickyPart']
         else:
             return True, '    ' + 'Test case passed!'
-    
-    def RandKeyTest(self, ans, correctAns):
-        if issubclass(type(ans), Exception):
-            if issubclass(type(ans), ImportError):
-                return False, '    ' + 'Code not found! Please check the path of your code.'
-            elif issubclass(type(ans), InterruptedError):
-                return False, '    ' + 'Have not been implemented!'
-            else:
-                return False, '    ' + 'Exception raised: ' + repr(ans) + ': ' + str(ans) + '\n*** ' +\
-                              '    ' + '     Tricky part: ' + self.test_dict['trickyPart']
-        elif type(ans) != int or ans<0 or ans.bit_length() > correctAns:
-            return False, '    ' + 'Wrong answer!' + '\n*** ' +\
-                           '    ' + '   Your answer: ' + str(ans) + '\n*** ' +\
-                           '    ' + 'Correct answer: bit length in ' + str(correctAns) + '\n*** ' +\
-                           '    ' + '   Tricky part: ' + self.test_dict['trickyPart']
-        else:
-            return True, '    ' + 'Test case passed!'
+
     
     def ExceptionTest(self, ans, correctAns):
-        if issubclass(type(ans), Exception):
-            if issubclass(type(ans), ImportError):
+        if isinstance(ans, BaseException):
+            if isinstance(ans, ImportError):
                 return False, '    ' + 'Code not found! Please check the path of your code.'
-            elif issubclass(type(ans), InterruptedError):
+            elif isinstance(ans, NotImplementedError):
                 return False, '    ' + 'Have not been implemented!'
-            elif type(ans) != type(correctAns):
-                return False, '    ' + 'Exception raised: ' + repr(ans) + ': ' + str(ans) + '\n*** ' +\
+            elif not issubclass(type(ans), type(correctAns)):
+                return False, '    ' + 'Exception raised: ' + type(ans).__name__ + ': ' + str(ans) + '\n*** ' +\
                               '    ' + '  Correct answer: ' + repr(correctAns) + '\n*** ' +\
                               '    ' + '     Tricky part: ' + self.test_dict['trickyPart']
             else:
@@ -101,275 +88,40 @@ class TestClass(object):
                             '    ' + '   Tricky part: ' + self.test_dict['trickyPart']
             
 
-    def stateOf(self):
-        code = eval(self.test_dict['code'])
-        correctAns = eval(self.solution_dict['solution'])
+    def fractionInit(self):
         try:
-            import aes
-            ans = aes.stateOf(code)
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def codeOf(self):
-        state = eval(self.test_dict['state'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            ans = aes.codeOf(state)
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
+            import pyfraction
+            correctAns = eval(self.solution_dict['solution'])
 
-    def RotWord(self):
-        word = eval(self.test_dict['word'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            ans = aes.RotWord(word)
-        except Exception as e:
+            numerator = eval(self.test_dict['numerator'])
+            denominator = eval(self.test_dict['denominator'])
+            sign = eval(self.test_dict['sign'])
+
+            parameter = pyfraction.Fraction(numerator, denominator, sign)
+            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative())
+        except BaseException as e:
             ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
+        return ans, correctAns
     
-    def SubWord(self):
-        word = eval(self.test_dict['word'])
-        correctAns = eval(self.solution_dict['solution'])
+    def privateParameter(self):
         try:
-            import aes
-            ans = aes.SubWord(word)
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def XOR(self):
-        item1, item2 = eval(self.test_dict['items'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            ans = aes.XOR(item1, item2)
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def keyExpansion(self):
-        key = eval(self.test_dict['key'])
-        Nk = eval(self.test_dict['Nk'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            ans = aes.keyExpansion(key, Nk)
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def SubBytes(self):
-        state = eval(self.test_dict['state'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            aes.SubBytes(state)
-            ans = state
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def InvSubBytes(self):
-        state = eval(self.test_dict['state'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            aes.InvSubBytes(state)
-            ans = state
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def ShiftRows(self):
-        state = eval(self.test_dict['state'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            aes.ShiftRows(state)
-            ans = state
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def InvShiftRows(self):
-        state = eval(self.test_dict['state'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            aes.InvShiftRows(state)
-            ans = state
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def MixColumns(self):
-        state = eval(self.test_dict['state'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            aes.MixColumns(state)
-            ans = state
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def InvMixColumns(self):
-        state = eval(self.test_dict['state'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            aes.InvMixColumns(state)
-            ans = state
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def AddRoundKey(self):
-        state = eval(self.test_dict['state'])
-        roundKey = eval(self.test_dict['roundKey'])
-        correctAns = eval(self.solution_dict['solution'])
-        try:
-            import aes
-            aes.AddRoundKey(state, roundKey)
-            ans = state
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-    
-    def AES_init(self):
-        keylen = eval(self.test_dict['keylen'])
-        key = eval(self.test_dict['key'])
-        correctAns = None
-        try:
-            import aes
+            import pyfraction
             correctAns = eval(self.solution_dict['solution'])
-            t = aes.AES(keylen, key)
-            ans = t.getkey()
-        except Exception as e:
+
+            numerator = eval(self.test_dict['numerator'])
+            denominator = eval(self.test_dict['denominator'])
+            sign = eval(self.test_dict['sign'])
+
+            parameter = pyfraction.Fraction(numerator, denominator, sign)
+            names = list(vars(parameter).keys())
+            ans = correctAns
+            for name in names:
+                if not name.startswith(correctAns):
+                    ans = 'There exists parameter name "' + name + '" whitch is not private.'
+        except BaseException as e:
             ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-        elif self.test_dict['class'] == 'RandKeyTest':
-            return self.RandKeyTest(ans, correctAns)
-        elif self.test_dict['class'] == 'ExceptionTest':
-            return self.ExceptionTest(ans, correctAns)
-    
-    def AES_enc(self):
-        keylen = eval(self.test_dict['keylen'])
-        key = eval(self.test_dict['key'])
-        msg = eval(self.test_dict['msg'])
-        correctAns = None
-        try:
-            import aes
-            correctAns = eval(self.solution_dict['solution'])
-            t = aes.AES(keylen, key)
-            ans = t.enc(msg)
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-        elif self.test_dict['class'] == 'RandKeyTest':
-            return self.RandKeyTest(ans, correctAns)
-        elif self.test_dict['class'] == 'ExceptionTest':
-            return self.ExceptionTest(ans, correctAns)
-    
-    def AES_dec(self):
-        keylen = eval(self.test_dict['keylen'])
-        key = eval(self.test_dict['key'])
-        ciph = eval(self.test_dict['ciph'])
-        correctAns = None
-        try:
-            import aes
-            correctAns = eval(self.solution_dict['solution'])
-            t = aes.AES(keylen, key)
-            ans = t.dec(ciph)
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-        elif self.test_dict['class'] == 'RandKeyTest':
-            return self.RandKeyTest(ans, correctAns)
-        elif self.test_dict['class'] == 'ExceptionTest':
-            return self.ExceptionTest(ans, correctAns)
-    
-    def AESCBC_enc(self):
-        keylen = eval(self.test_dict['keylen'])
-        key = eval(self.test_dict['key'])
-        msg = eval(self.test_dict['msg'])
-        msglen = eval(self.test_dict['msglen'])
-        iv = eval(self.test_dict['iv'])
-        msg_file = eval(self.test_dict['msg_file'])
-        ciph_file = eval(self.test_dict['ciph_file'])
-        pad = eval(self.test_dict['pad'])
-        correctAns = None
-        try:
-            import aes
-            correctAns = eval(self.solution_dict['solution'])
-            t = aes.AESCBC(keylen, key)
-            if type(msg_file) == str:
-                with open(msg_file, 'wb') as f:
-                    f.write(msg.to_bytes(msglen, 'big'))
-            t.encfile(msg_file, ciph_file, iv, pad)
-            if type(ciph_file) == str:
-                with open(ciph_file, 'rb') as f:
-                    ciph = int.from_bytes(f.read(), 'big')
-            ans = ciph
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-        elif self.test_dict['class'] == 'RandKeyTest':
-            return self.RandKeyTest(ans, correctAns)
-        elif self.test_dict['class'] == 'ExceptionTest':
-            return self.ExceptionTest(ans, correctAns)
-    
-    def AESCBC_dec(self):
-        keylen = eval(self.test_dict['keylen'])
-        key = eval(self.test_dict['key'])
-        ciph = eval(self.test_dict['ciph'])
-        ciphlen = eval(self.test_dict['ciphlen'])
-        iv = eval(self.test_dict['iv'])
-        msg_file = eval(self.test_dict['msg_file'])
-        ciph_file = eval(self.test_dict['ciph_file'])
-        pad = eval(self.test_dict['pad'])
-        correctAns = None
-        try:
-            import aes
-            correctAns = eval(self.solution_dict['solution'])
-            t = aes.AESCBC(keylen, key)
-            if type(ciph_file) == str:
-                with open(ciph_file, 'wb') as f:
-                    f.write(ciph.to_bytes(ciphlen, 'big'))
-            t.decfile(ciph_file, msg_file, iv, pad)
-            if type(msg_file) == str:
-                with open(msg_file, 'rb') as f:
-                    msg = int.from_bytes(f.read(), 'big')
-            ans = msg
-        except Exception as e:
-            ans = e
-        if self.test_dict['class'] == 'IOTest':
-            return self.IOTest(ans, correctAns)
-        elif self.test_dict['class'] == 'RandKeyTest':
-            return self.RandKeyTest(ans, correctAns)
-        elif self.test_dict['class'] == 'ExceptionTest':
-            return self.ExceptionTest(ans, correctAns)
+        return ans, correctAns
+
     
 
 class TestParser(object):

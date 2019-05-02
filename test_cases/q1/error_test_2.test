@@ -1,11 +1,11 @@
 # Basic introduction.
-class: "IOTest"
+class: "ExceptionTest"
 algorithm: "fractionInit"
 
 # Below is the input part.
 numerator: "12"
-denominator: "pyfraction.Fraction(202, 500)"
+denominator: "[20]"
 sign: "'-'"
 
 # The tricky part of the test
-trickyPart: "Deal with fraction as input."
+trickyPart: "denominator is not right."
