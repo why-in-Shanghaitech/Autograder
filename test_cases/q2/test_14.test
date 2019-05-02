@@ -1,0 +1,12 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "operator"
+
+# Below is the input part.
+parameter_1: "(0, 58, '+')"
+parameter_2: "(0, -3, '+')"
+result: "- parameter_1"
+
+
+# The tricky part of the test
+trickyPart: "-(0/58) -> (0,1,'+')"
