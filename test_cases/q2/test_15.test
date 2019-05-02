@@ -1,0 +1,12 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "operator"
+
+# Below is the input part.
+parameter_1: "(20, 58, '-')"
+parameter_2: "(0, -3, '+')"
+result: "abs(parameter_1) - parameter_1 + parameter_2"
+
+
+# The tricky part of the test
+trickyPart: "abs(-20/58) - (-20/58) + (0/-3)"
