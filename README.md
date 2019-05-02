@@ -24,6 +24,7 @@ If you want to test your code for specified testcase, for example, q1/test_1.tes
 
 Question i is exactly Task i (i = 1, 2, 3, 4).
 
+第二题可能只需要处理Fraction(int, int, sign)的情况，所以如果第一题不会做也不要气馁，可以先做第二题！
 
 # SI 100B Homework 5: pyFraction
 

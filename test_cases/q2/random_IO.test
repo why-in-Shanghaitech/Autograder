@@ -1,0 +1,9 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "randomOperator"
+
+# Below is the input part.
+times: "500"
+
+# The tricky part of the test
+trickyPart: "This test will run 500 random correct input compare with fractions.Fraction"
