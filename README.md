@@ -26,6 +26,8 @@ Question i is exactly Task i (i = 1, 2, 3, 4).
 
 第二题可能只需要处理Fraction(int, int, sign)的情况，所以如果第一题不会做也不要气馁，可以先做第二题！
 
+对第4题，推荐[领扣-逆波兰表达式](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)上面有可用的大量优质testcase和知识点解析。
+
 # SI 100B Homework 5: pyFraction
 
 * Author: [Diao Zihao](mailto:diaozh@shanghaitech.edu.cn)

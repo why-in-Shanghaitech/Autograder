@@ -34,7 +34,8 @@ class TestClass(object):
             "randomOperator": lambda: self.test(self.randomOperator, 5),
             "toFloat": lambda: self.test(self.toFloat),
             "fromInt": lambda: self.test(self.fromInt),
-            "fromString": lambda: self.test(self.fromString)
+            "fromString": lambda: self.test(self.fromString),
+            "postfix": lambda: self.test(self.postfix)
         }
     
     def getResult(self):
@@ -261,6 +262,19 @@ class TestClass(object):
 
             parameter = pyfraction.Fraction.from_string(string)
             ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative())
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def postfix(self):
+        try:
+            import pyfraction
+
+            expression = eval(self.test_dict['expression'])
+            correctAns = eval(self.solution_dict['solution'])
+
+            parameter = pyfraction.evaluate_postfix_expr(expression)
+            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative()) if isinstance(parameter, pyfraction.Fraction) else parameter
         except BaseException as e:
             ans = e
         return ans, correctAns
