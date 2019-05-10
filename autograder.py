@@ -16,11 +16,11 @@ import optparse
 import os, sys
 from grading import TestParser, TestClass
 
-default_question_list = ['q1', 'q2', 'q3', 'q4']
+default_question_list = ['q1', 'q2', 'q3', 'q4', 'q5']
 
 def readCommand(argv):
     parser = optparse.OptionParser(description = 'Run public tests on student code')
-    parser.set_defaults(muteResult=False)
+    parser.set_defaults(muteResult=False, showFile=False, showInfo=False)
     parser.add_option('--test-directory',
                       dest = 'testRoot',
                       default = 'test_cases',
@@ -33,6 +33,14 @@ def readCommand(argv):
                     dest = 'muteResult',
                     action = 'store_true',
                     help = 'Mute the result printing.')
+    parser.add_option('--show-file',
+                    dest = 'showFile',
+                    action = 'store_true',
+                    help = 'Show the .test and .solution files if the answer is wrong.')
+    parser.add_option('--show-info', '-s',
+                    dest = 'showInfo',
+                    action = 'store_true',
+                    help = 'Show the input parameter and solution if the answer is wrong. Not conducted when --show-file is added.')
     parser.add_option('--test', '-t',
                       dest = 'runTest',
                       default = None,
@@ -113,6 +121,40 @@ if __name__ == '__main__':
                     message = '*** PASS: ' + path + '\n*** ' + message
                 else:
                     message = '*** FAIL: ' + path + '\n*** ' + message
+                
+                if not passed and options.showFile:
+
+                    test_file = '\n***     '.join(test_parser.parse()['__raw_lines__'])
+                    test_file = '\n***\n***     ==================\n***     Below is the test file (' +\
+                                 test_parser.parse()['path'] + '):\n*** \n***     ' +\
+                                 test_file + '\n***     ==================\n'
+
+                    solution_file = '\n***     '.join(solution_parser.parse()['__raw_lines__'])
+                    solution_file = '***     Below is the solution file (' +\
+                                     solution_parser.parse()['path'] +\
+                                     '):\n*** \n***     ' + solution_file + '\n***'
+                    
+                    message += test_file + solution_file
+                
+                elif not passed and options.showInfo:
+
+                    test_parsed = test_parser.parse()
+                    input_varibles = set(test_parsed.keys()).difference({'__raw_lines__', 'path', '__emit__', 'class', 'algorithm', 'trickyPart'})
+
+                    input_items = [varible + ': ' + test_parsed[varible] for varible in input_varibles]
+
+                    test_info = '\n***     '.join(input_items)
+                    test_info = '\n***\n***     ==================\n***     Below is the test varibles (' +\
+                                 test_parser.parse()['path'] + '):\n*** \n***     ' +\
+                                 test_info + '\n*** \n*** \n***     ==================\n'
+
+                    solution_info = '\n***     solution: ' + solution_parser.parse()['solution']
+                    solution_info = '***     Below is the solution (' +\
+                                     solution_parser.parse()['path'] +\
+                                     '):\n***     ' + solution_info + '\n***\n***'
+                    
+                    message += test_info + solution_info
+
                 counter_total += 1
                 if not options.muteResult or not passed:
                     print(message)

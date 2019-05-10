@@ -1,9 +1,0 @@
-# Basic introduction.
-class: "ExceptionTest"
-algorithm: "fromString"
-
-# Below is the input part.
-string: "'+\\frac{+0}{20}'"
-
-# The tricky part of the test
-trickyPart: "+0 is not allowed"

@@ -1,9 +1,0 @@
-# Basic introduction.
-class: "IOTest"
-algorithm: "postfix"
-
-# Below is the input part.
-expression: "'2 3 + 3 4 *5 7 - / +'"
-
-# The tricky part of the test
-trickyPart: "Space missed."

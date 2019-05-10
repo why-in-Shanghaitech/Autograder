@@ -1,11 +1,10 @@
 # Basic introduction.
 class: "IOTest"
-algorithm: "Query"
+algorithm: "build_index"
 
 # Below is the input part.
 docs: "'docs'"
-query: "'Ban GUN'"
-mode: "'AND'"
+word: "'death'"
 
 # The tricky part of the test
 trickyPart: "Nothing tricky."

@@ -1,11 +1,9 @@
 # Basic introduction.
 class: "IOTest"
-algorithm: "fractionInit"
+algorithm: "init"
 
 # Below is the input part.
-numerator: "12"
-denominator: "9"
-sign: "'+'"
+docs: "'docs'"
 
 # The tricky part of the test
 trickyPart: "Nothing tricky."

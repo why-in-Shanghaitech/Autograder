@@ -1,9 +1,0 @@
-# Basic introduction.
-class: "ExceptionTest"
-algorithm: "fromInt"
-
-# Below is the input part.
-int: "'0'"
-
-# The tricky part of the test
-trickyPart: "'0'"

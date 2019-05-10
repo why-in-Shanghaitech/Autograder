@@ -1,10 +1,10 @@
 # Basic introduction.
 class: "IOTest"
-algorithm: "Query"
+algorithm: "Rank"
 
 # Below is the input part.
 docs: "'docs'"
-query: "'Ban GUN'"
+query: "'guns'"
 mode: "'AND'"
 
 # The tricky part of the test

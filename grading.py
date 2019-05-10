@@ -28,14 +28,11 @@ class TestClass(object):
         self.algorithm_ = test_dict['algorithm']
 
         self.algorithm_list = {      # The dict of all the algorithms that may be put into use
-            "fractionInit": lambda: self.test(self.fractionInit),
-            "privateParameter": lambda: self.test(self.privateParameter),
-            "operator": lambda: self.test(self.operator),
-            "randomOperator": lambda: self.test(self.randomOperator, 5),
-            "toFloat": lambda: self.test(self.toFloat),
-            "fromInt": lambda: self.test(self.fromInt),
-            "fromString": lambda: self.test(self.fromString),
-            "postfix": lambda: self.test(self.postfix)
+            "init": lambda: self.test(self.init),
+            "tokenizer": lambda: self.test(self.tokenizer),
+            "build_index": lambda: self.test(self.build_index),
+            "Query": lambda: self.test(self.Query),
+            "Rank": lambda: self.test(self.Rank)
         }
     
     def getResult(self):
@@ -94,187 +91,73 @@ class TestClass(object):
                             '    ' + '   Tricky part: ' + self.test_dict['trickyPart']
             
 
-    def fractionInit(self):
+    def init(self):
         try:
-            import pyfraction
+            import Poople
             correctAns = eval(self.solution_dict['solution'])
 
-            numerator = eval(self.test_dict['numerator'])
-            denominator = eval(self.test_dict['denominator'])
-            sign = eval(self.test_dict['sign'])
+            docs = eval(self.test_dict['docs'])
 
-            parameter = pyfraction.Fraction(numerator, denominator, sign)
-            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative())
+            p = Poople.Poople(docs)
+            ans = p.id2name
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+
+    def tokenizer(self):
+        try:
+            import Poople
+            correctAns = eval(self.solution_dict['solution'])
+
+            docs = eval(self.test_dict['docs'])
+
+            p = Poople.Poople(docs)
+            ans = p.tokenizer()
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+
+    def build_index(self):
+        try:
+            import Poople
+            correctAns = eval(self.solution_dict['solution'])
+
+            docs = eval(self.test_dict['docs'])
+            word = eval(self.test_dict['word'])
+
+            p = Poople.Poople(docs)
+            p.build_index()
+            ans = p.inverted_index[word]
         except BaseException as e:
             ans = e
         return ans, correctAns
     
-    def privateParameter(self):
+    def Query(self):
         try:
-            import pyfraction
+            import Poople
             correctAns = eval(self.solution_dict['solution'])
 
-            numerator = eval(self.test_dict['numerator'])
-            denominator = eval(self.test_dict['denominator'])
-            sign = eval(self.test_dict['sign'])
+            docs = eval(self.test_dict['docs'])
+            query = eval(self.test_dict['query'])
+            mode = eval(self.test_dict['mode'])
 
-            parameter = pyfraction.Fraction(numerator, denominator, sign)
-            names = list(vars(parameter).keys())
-            ans = correctAns
-            for name in names:
-                if not name.startswith(correctAns):
-                    ans = 'There exists parameter name "' + name + '" whitch is not private.'
+            p = Poople.Poople(docs)
+            ans = p.Query(query, mode)
         except BaseException as e:
             ans = e
         return ans, correctAns
     
-    def operator(self):
+    def Rank(self):
         try:
-            import pyfraction
+            import Poople
             correctAns = eval(self.solution_dict['solution'])
 
-            numerator_1, denominator_1, sign_1  = eval(self.test_dict['parameter_1'])
-            parameter_1 = pyfraction.Fraction(numerator_1, denominator_1, sign_1)
+            docs = eval(self.test_dict['docs'])
+            query = eval(self.test_dict['query'])
+            mode = eval(self.test_dict['mode'])
 
-            numerator_2, denominator_2, sign_2  = eval(self.test_dict['parameter_2'])
-            parameter_2 = pyfraction.Fraction(numerator_2, denominator_2, sign_2)
-
-            result = eval(self.test_dict['result'])
-            ans = (result.get_numerator(), result.get_denominator(), result.is_nonnegative()) if isinstance(result, pyfraction.Fraction) else result
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def randomOperator(self):
-        try:
-            import pyfraction, random, fractions
-            opeartions = ['+', '-', '*', '/']
-            compares = ['>', '>=', '<', '<=', '==', '!=']
-            choices = ['operator']*4 + ['compare']*6 + ['neg', 'abs']
-            times = eval(self.test_dict['times'])
-            correctAns = self.solution_dict['solution']
-
-            for trial in range(1, times+1):
-
-                numerator_1, denominator_1, sign_1  = random.randint(0, 999999)*random.choice([1, -1]),\
-                                                      random.randint(1, 999999)*random.choice([1, -1]),\
-                                                      random.choice(['+', '-'])
-                parameter_1 = pyfraction.Fraction(numerator_1, denominator_1, sign_1)
-                fraction_1 = fractions.Fraction(numerator_1 if sign_1 == '+' else -1*numerator_1, denominator_1)
-
-                numerator_2, denominator_2, sign_2  = random.randint(1, 999999)*random.choice([1, -1]),\
-                                                      random.randint(1, 999999)*random.choice([1, -1]),\
-                                                      random.choice(['+', '-'])
-                parameter_2 = pyfraction.Fraction(numerator_2, denominator_2, sign_2)
-                fraction_2 = fractions.Fraction(numerator_2 if sign_2 == '+' else -1*numerator_2, denominator_2)
-
-                choice = random.choice(choices)
-                if choice == 'operator':
-
-                    operator = random.choice(opeartions)
-                    expression = 'trial {}: {}'.format( trial, str(fraction_1) + operator + str(fraction_2) )
-                    self.test_dict['trickyPart'] = expression
-
-                    ans = eval("parameter_1" + operator + "parameter_2")
-                    correctAns = eval("fraction_1" + operator + "fraction_2")
-
-                    numerator, denominator, sign = ans.get_numerator(), ans.get_denominator(), ans.is_nonnegative()
-
-                    assert fractions.Fraction(numerator if sign else -1*numerator, denominator) == correctAns
-
-                elif choice == 'compare':
-                    
-                    comparer = random.choice(compares)
-                    expression = 'trial {}: {}'.format( trial, str(fraction_1) + comparer + str(fraction_2) )
-                    self.test_dict['trickyPart'] = expression
-
-                    ans = eval("parameter_1" + comparer + "parameter_2")
-                    correctAns = eval("fraction_1" + comparer + "fraction_2")
-
-                    assert ans == correctAns
-
-                elif choice == 'neg':
-
-                    expression = 'trial {}: -{}'.format( trial, '-' + str(fraction_1) )
-                    self.test_dict['trickyPart'] = expression
-
-                    ans = -parameter_1
-                    correctAns = -fraction_1
-
-                    numerator, denominator, sign = ans.get_numerator(), ans.get_denominator(), ans.is_nonnegative()
-
-                    assert fractions.Fraction(numerator if sign else -1*numerator, denominator) == correctAns
-
-                elif choice == 'abs':
-                    
-                    expression = 'trial {}: abs({})'.format( trial, str(fraction_1) )
-                    self.test_dict['trickyPart'] = expression
-
-                    ans = abs(parameter_1)
-                    correctAns = abs(fraction_1)
-
-                    numerator, denominator, sign = ans.get_numerator(), ans.get_denominator(), ans.is_nonnegative()
-
-                    assert fractions.Fraction(numerator if sign else -1*numerator, denominator) == correctAns
-            
-            ans = 'All passed.'
-            correctAns = 'All passed.'
-
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def toFloat(self):
-        try:
-            import pyfraction
-
-            numerator = eval(self.test_dict['numerator'])
-            denominator = eval(self.test_dict['denominator'])
-            sign = eval(self.test_dict['sign'])
-
-            correctAns = eval(self.solution_dict['solution'])
-
-            parameter = pyfraction.Fraction(numerator, denominator, sign)
-            ans = parameter.to_float()
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def fromInt(self):
-        try:
-            import pyfraction
-
-            integer = eval(self.test_dict['int'])
-            correctAns = eval(self.solution_dict['solution'])
-
-            parameter = pyfraction.Fraction.from_integer(integer)
-            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative())
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def fromString(self):
-        try:
-            import pyfraction
-
-            string = eval(self.test_dict['string'])
-            correctAns = eval(self.solution_dict['solution'])
-
-            parameter = pyfraction.Fraction.from_string(string)
-            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative())
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def postfix(self):
-        try:
-            import pyfraction
-
-            expression = eval(self.test_dict['expression'])
-            correctAns = eval(self.solution_dict['solution'])
-
-            parameter = pyfraction.evaluate_postfix_expr(expression)
-            ans = (parameter.get_numerator(), parameter.get_denominator(), parameter.is_nonnegative()) if isinstance(parameter, pyfraction.Fraction) else parameter
+            p = Poople.Poople(docs)
+            ans = p.Rank(query, mode)
         except BaseException as e:
             ans = e
         return ans, correctAns
