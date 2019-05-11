@@ -1,0 +1,13 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "Rank"
+
+# Below is the input part.
+docs: "'novels'"
+query: "'Do your homework'"
+mode: "'AND'"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+
+

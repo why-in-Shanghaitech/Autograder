@@ -1,0 +1,5 @@
+# This is the solution file.
+
+solution: """
+{1: '023Manifesto of the Communist Party - Karl Marx and Friedrich Engels.txt', 2: "101Gulliver's Travels - Jonathan Swift.txt", 3: '119The Odyssey - Homer.txt', 4: '11Flatland - Edwin A. Abbott.txt', 5: '1Beauty and The Beast - unknown writer.txt'}
+"""

@@ -1,0 +1,12 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "Query"
+
+# Below is the input part.
+docs: "'docs'"
+query: "' A ALl '"
+mode: "'OR'"
+
+# The tricky part of the test
+trickyPart: "No satisfaction."
+

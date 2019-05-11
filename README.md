@@ -3,7 +3,20 @@
 This autograder is modified from CS188 in Berkeley.
 
 ## Update
+- May 11 (14 pm): Update testcase and hint. 
 - May 10 (14 pm): Release.
+
+## HINT
+**Warning: you may have to wait up to 20 seconds to get one testcase finished. Please DO NOT INTERRUPT.**
+
+stoplist.txt 中的内容：
+
+- 在Inverted Index中不作为key
+- 在query中需要事先删去再作进一步处理
+
+Select the larger one in Lexicographical order是指字典序较后的，即id数字较大的文件。
+
+注意返回None.如果什么也不返回，也可以视作返回None.
 
 ## To get start with
 
@@ -100,6 +113,7 @@ Every submission will create a new GitLab issue, where you can track the progres
 
 
 # Update
+- May 10: Add kindly reminder.
 - May 6: Modify descriptions to eliminate ambiguity.
 - May 5: Fix typos.
 - May 4: Release.
@@ -150,9 +164,11 @@ Record tokens from all documents in an inverted index. Implement instance method
 
 ### Stop words
 
-In SEO(Search Engine Optimization) terminology, stop words are the most common words that most search engines ignore, saving space and time in processing large data during crawling or indexing. This helps search engines to save space in their databases and improve performance.
+In SEO(Search Engine Optimization) terminology, stop words are the most common words that most search engines **ignore**, saving space and time in processing large data during crawling or indexing. This helps search engines to save space in their databases and improve performance.
 
 For this assignment, stop words are stored in the file **'stoplist.txt'**. You need ignore all stop words when building index.
+
+In this assignment, you need **ignore all stopwords** in query.
 
 ### Inverted Index
 

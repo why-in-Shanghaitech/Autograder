@@ -1,0 +1,13 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "Query"
+
+# Below is the input part.
+docs: "'novels'"
+query: "'PUsh \t \n Intermediate'"
+mode: "'OR'"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+
+

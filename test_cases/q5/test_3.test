@@ -1,0 +1,12 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "Rank"
+
+# Below is the input part.
+docs: "'docs'"
+query: "'politics'"
+mode: "'AND'"
+
+# The tricky part of the test
+trickyPart: "The larger one in Lexicographical order, not the smaller one."
+

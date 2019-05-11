@@ -1,0 +1,11 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "build_index"
+
+# Below is the input part.
+docs: "'docs'"
+word: "'gun'"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+

@@ -1,0 +1,12 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "Query"
+
+# Below is the input part.
+docs: "'docs'"
+query: "'a Gun \t and Death'"
+mode: "'AND'"
+
+# The tricky part of the test
+trickyPart: "Ignore the stoplist!"
+

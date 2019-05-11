@@ -1,0 +1,13 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "Rank"
+
+# Below is the input part.
+docs: "'novels'"
+query: "'What is it'"
+mode: "'OR'"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+
+

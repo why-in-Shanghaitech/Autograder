@@ -18,7 +18,7 @@ import time_decorator
 
 class TestClass(object):
 
-    timeLimit = 2           # The time limit (in seconds) of each testcase
+    timeLimit = 20           # The time limit (in seconds) of each testcase
 
     def __init__(self, test_dict, solution_dict):
 

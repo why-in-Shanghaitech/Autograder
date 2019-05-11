@@ -1,0 +1,12 @@
+# Basic introduction.
+class: "ExceptionTest"
+algorithm: "build_index"
+
+# Below is the input part.
+docs: "'docs'"
+word: "'COM'"
+
+# The tricky part of the test
+trickyPart: "Use str.lower()."
+
+

@@ -1,0 +1,10 @@
+# Basic introduction.
+class: "IOTest"
+algorithm: "tokenizer"
+
+# Below is the input part.
+docs: "'novels'"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+
