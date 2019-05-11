@@ -3,11 +3,11 @@
 This autograder is modified from CS188 in Berkeley.
 
 ## Update
+- May 11 (15 pm): Delete testcase with novels except the first one.
 - May 11 (14 pm): Update testcase and hint. 
 - May 10 (14 pm): Release.
 
 ## HINT
-**Warning: you may have to wait up to 20 seconds to get one testcase finished. Please DO NOT INTERRUPT.**
 
 stoplist.txt 中的内容：
 
