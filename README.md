@@ -3,6 +3,7 @@
 This autograder is modified from CS188 in Berkeley.
 
 ## Update
+- May 13 (22 pm): Update testcase.
 - May 11 (15 pm): Delete testcase with novels except the first one.
 - May 11 (14 pm): Update testcase and hint. 
 - May 10 (14 pm): Release.

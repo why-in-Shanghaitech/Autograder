@@ -3,10 +3,10 @@ class: "IOTest"
 algorithm: "Query"
 
 # Below is the input part.
-docs: "'docs'"
-query: "'a Gun and Death'"
+docs: "'novels'"
+query: "'Ban GUN'"
 mode: "'AND'"
 
 # The tricky part of the test
-trickyPart: "Ignore the stoplist!"
+trickyPart: "Nothing tricky."
 

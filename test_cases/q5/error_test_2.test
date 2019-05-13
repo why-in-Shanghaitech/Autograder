@@ -1,12 +1,13 @@
 # Basic introduction.
 class: "IOTest"
-algorithm: "Query"
+algorithm: "Rank"
 
 # Below is the input part.
-docs: "'docs'"
-query: "'a Gun and Death'"
+docs: "'novels'"
+query: "'Do your homework'"
 mode: "'AND'"
 
 # The tricky part of the test
-trickyPart: "Ignore the stoplist!"
+trickyPart: "Nothing tricky."
+
 

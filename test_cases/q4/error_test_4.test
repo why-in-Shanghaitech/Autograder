@@ -4,9 +4,10 @@ algorithm: "Query"
 
 # Below is the input part.
 docs: "'docs'"
-query: "'a Gun and Death'"
+query: "'by gun intermediateabc'"
 mode: "'AND'"
 
 # The tricky part of the test
-trickyPart: "Ignore the stoplist!"
+trickyPart: "Not in stoplist and not in doc -> None."
+
 
