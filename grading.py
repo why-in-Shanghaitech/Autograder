@@ -13,7 +13,7 @@
 
 
 import re
-import sys
+import sys, traceback
 import time_decorator
 
 class TestClass(object):
@@ -29,10 +29,17 @@ class TestClass(object):
 
         self.algorithm_list = {      # The dict of all the algorithms that may be put into use
             "init": lambda: self.test(self.init),
-            "tokenizer": lambda: self.test(self.tokenizer),
-            "build_index": lambda: self.test(self.build_index),
-            "Query": lambda: self.test(self.Query),
-            "Rank": lambda: self.test(self.Rank)
+            "addition": lambda: self.test(self.addition),
+            "equalization": lambda: self.test(self.equalization),
+            "reverse": lambda: self.test(self.reverse),
+            "bitChange": lambda: self.test(self.bitChange),
+            "getitem": lambda: self.test(self.getitem),
+            "setitem": lambda: self.test(self.setitem),
+            "his": lambda: self.test(self.his),
+            "hiseq": lambda: self.test(self.hiseq),
+            "kernel": lambda: self.test(self.kernel),
+            "huffman": lambda: self.test(self.huffman),
+            "consecutiveTest": lambda: self.test(self.consecutiveTest)
         }
     
     def getResult(self):
@@ -61,7 +68,9 @@ class TestClass(object):
             elif isinstance(ans, NotImplementedError):
                 return False, '    ' + 'Have not been implemented!'
             else:
-                return False, '    ' + 'Exception raised: ' + type(ans).__name__ + ': ' + str(ans) + '\n*** ' +\
+                return False, '    ' + 'Exception raised: ' + type(ans).__name__ + \
+                              ' (line %d)' % traceback.extract_tb(ans.__traceback__)[-1].lineno + ': ' + str(ans) + '\n*** ' + \
+                              '    ' + '  Exception line: ' + str(traceback.extract_tb(ans.__traceback__)[-1].line) + '\n*** ' + \
                               '    ' + '     Tricky part: ' + self.test_dict['trickyPart']
         elif ans != correctAns:
             return False, '    ' + 'Wrong answer!' + '\n*** ' +\
@@ -79,7 +88,9 @@ class TestClass(object):
             elif isinstance(ans, NotImplementedError):
                 return False, '    ' + 'Have not been implemented!'
             elif not issubclass(type(ans), type(correctAns)):
-                return False, '    ' + 'Exception raised: ' + type(ans).__name__ + ': ' + str(ans) + '\n*** ' +\
+                return False, '    ' + 'Exception raised: ' + type(ans).__name__ + \
+                              ' (line %d)' % traceback.extract_tb(ans.__traceback__)[-1].lineno + ': ' + str(ans) + '\n*** ' + \
+                              '    ' + '  Exception line: ' + str(traceback.extract_tb(ans.__traceback__)[-1].line) + '\n*** ' + \
                               '    ' + '  Correct answer: ' + repr(correctAns) + '\n*** ' +\
                               '    ' + '     Tricky part: ' + self.test_dict['trickyPart']
             else:
@@ -93,71 +104,178 @@ class TestClass(object):
 
     def init(self):
         try:
-            import Poople
+            import DIP
             correctAns = eval(self.solution_dict['solution'])
 
-            docs = eval(self.test_dict['docs'])
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
 
-            p = Poople.Poople(docs)
-            ans = p.id2name
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-
-    def tokenizer(self):
-        try:
-            import Poople
-            correctAns = eval(self.solution_dict['solution'])
-
-            docs = eval(self.test_dict['docs'])
-
-            p = Poople.Poople(docs)
-            ans = p.tokenizer()
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-
-    def build_index(self):
-        try:
-            import Poople
-            correctAns = eval(self.solution_dict['solution'])
-
-            docs = eval(self.test_dict['docs'])
-            word = eval(self.test_dict['word'])
-
-            p = Poople.Poople(docs)
-            p.build_index()
-            ans = p.inverted_index[word]
+            img = DIP.Image(imageInput, n)
+            ans = str(img)
         except BaseException as e:
             ans = e
         return ans, correctAns
     
-    def Query(self):
+    def addition(self):
         try:
-            import Poople
+            import DIP
             correctAns = eval(self.solution_dict['solution'])
 
-            docs = eval(self.test_dict['docs'])
-            query = eval(self.test_dict['query'])
-            mode = eval(self.test_dict['mode'])
+            imageInput_1 = eval(self.test_dict['imageInput_1'])
+            n_1 = eval(self.test_dict['n_1'])
+            imageInput_2 = eval(self.test_dict['imageInput_2'])
+            n_2 = eval(self.test_dict['n_2'])
 
-            p = Poople.Poople(docs)
-            ans = p.Query(query, mode)
+            img1 = DIP.Image(imageInput_1, n_1)
+            img2 = DIP.Image(imageInput_2, n_2)
+            ans = str(img1 + img2)
         except BaseException as e:
             ans = e
         return ans, correctAns
     
-    def Rank(self):
+    def equalization(self):
         try:
-            import Poople
+            import DIP
             correctAns = eval(self.solution_dict['solution'])
 
-            docs = eval(self.test_dict['docs'])
-            query = eval(self.test_dict['query'])
-            mode = eval(self.test_dict['mode'])
+            imageInput_1 = eval(self.test_dict['imageInput_1'])
+            n_1 = eval(self.test_dict['n_1'])
+            imageInput_2 = eval(self.test_dict['imageInput_2'])
+            n_2 = eval(self.test_dict['n_2'])
 
-            p = Poople.Poople(docs)
-            ans = p.Rank(query, mode)
+            img1 = DIP.Image(imageInput_1, n_1)
+            img2 = DIP.Image(imageInput_2, n_2)
+            ans = img1 == img2
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def reverse(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+
+            img = DIP.Image(imageInput, n)
+            ans = str(img.reverse())
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def bitChange(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+            new_n = eval(self.test_dict['new_n'])
+
+            img = DIP.Image(imageInput, n)
+            ans = str(img.bitChange(new_n))
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def getitem(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+            index = self.test_dict['index']
+
+            img = DIP.Image(imageInput, n)
+            ans = eval(index)
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def setitem(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+            index = self.test_dict['index']
+            target = eval(self.test_dict['target'])
+
+            img = DIP.Image(imageInput, n)
+            exec(index + ' = target')
+            ans = str(img)
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def his(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+
+            img = DIP.Image(imageInput, n)
+            ans = img.his()
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def hiseq(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+
+            img = DIP.Image(imageInput, n)
+            ans = str(img.hiseq())
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def kernel(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+            kernel = eval(self.test_dict['kernel'])
+
+            img = DIP.Image(imageInput, n)
+            ans = str(img * kernel)
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def huffman(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            imageInput = eval(self.test_dict['imageInput'])
+            n = eval(self.test_dict['n'])
+
+            img = DIP.Image(imageInput, n)
+            ans = img.huffman()
+        except BaseException as e:
+            ans = e
+        return ans, correctAns
+    
+    def consecutiveTest(self):
+        try:
+            import DIP
+            correctAns = eval(self.solution_dict['solution'])
+
+            exec(self.test_dict['code'])
+
+            ans = eval(self.test_dict['ans'])
         except BaseException as e:
             ans = e
         return ans, correctAns

@@ -1,0 +1,11 @@
+# Basic introduction.
+class: "ExceptionTest"
+algorithm: "init"
+
+# Below is the input part.
+imageInput: "'[12,3333333333333333+j,2,3]'"
+n: "8"
+
+# The tricky part of the test
+trickyPart: "Nothing tricky."
+
