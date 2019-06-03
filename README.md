@@ -3,6 +3,7 @@
 This autograder is modified from CS188 in Berkeley.
 
 ## Update
+- June 3 (19 pm): Update huffman pseudocode.
 - May 31 (18 pm): Release.
 
 ## To get start with
