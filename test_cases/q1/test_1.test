@@ -3,9 +3,7 @@ class: "IOTest"
 algorithm: "init"
 
 # Below is the input part.
-imageInput: "'[]'"
-n: "2"
+Input: "'[1]'"
 
 # The tricky part of the test
 trickyPart: "Nothing tricky."
-

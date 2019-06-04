@@ -1,13 +1,10 @@
 # Basic introduction.
 class: "IOTest"
-algorithm: "addition"
+algorithm: "consecutiveTest"
 
 # Below is the input part.
-imageInput_1: "'[1,2,3; 4,5,6; 7,8,9]'"
-n_1: "8"
-
-imageInput_2: "'[1,2,3; 4,5,6; 7,8,9]'"
-n_2: "8"
+code: "result = [1]"
+ans: "result"
 
 # The tricky part of the test
 trickyPart: "Nothing tricky."

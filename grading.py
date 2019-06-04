@@ -29,16 +29,6 @@ class TestClass(object):
 
         self.algorithm_list = {      # The dict of all the algorithms that may be put into use
             "init": lambda: self.test(self.init),
-            "addition": lambda: self.test(self.addition),
-            "equalization": lambda: self.test(self.equalization),
-            "reverse": lambda: self.test(self.reverse),
-            "bitChange": lambda: self.test(self.bitChange),
-            "getitem": lambda: self.test(self.getitem),
-            "setitem": lambda: self.test(self.setitem),
-            "his": lambda: self.test(self.his),
-            "hiseq": lambda: self.test(self.hiseq),
-            "kernel": lambda: self.test(self.kernel),
-            "huffman": lambda: self.test(self.huffman),
             "consecutiveTest": lambda: self.test(self.consecutiveTest)
         }
     
@@ -102,175 +92,25 @@ class TestClass(object):
                             '    ' + '   Tricky part: ' + self.test_dict['trickyPart']
             
 
+    # ========== Below is the template of the algorithms run during the test ==========#
+
     def init(self):
         try:
-            import DIP
+            import ...
             correctAns = eval(self.solution_dict['solution'])
 
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
+            Input = eval(self.test_dict['Input'])
 
-            img = DIP.Image(imageInput, n)
-            ans = str(img)
+            init = ....Object(Input)
+            ans = str(init)
         except BaseException as e:
             ans = e
         return ans, correctAns
     
-    def addition(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput_1 = eval(self.test_dict['imageInput_1'])
-            n_1 = eval(self.test_dict['n_1'])
-            imageInput_2 = eval(self.test_dict['imageInput_2'])
-            n_2 = eval(self.test_dict['n_2'])
-
-            img1 = DIP.Image(imageInput_1, n_1)
-            img2 = DIP.Image(imageInput_2, n_2)
-            ans = str(img1 + img2)
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def equalization(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput_1 = eval(self.test_dict['imageInput_1'])
-            n_1 = eval(self.test_dict['n_1'])
-            imageInput_2 = eval(self.test_dict['imageInput_2'])
-            n_2 = eval(self.test_dict['n_2'])
-
-            img1 = DIP.Image(imageInput_1, n_1)
-            img2 = DIP.Image(imageInput_2, n_2)
-            ans = img1 == img2
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def reverse(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-
-            img = DIP.Image(imageInput, n)
-            ans = str(img.reverse())
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def bitChange(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-            new_n = eval(self.test_dict['new_n'])
-
-            img = DIP.Image(imageInput, n)
-            ans = str(img.bitChange(new_n))
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def getitem(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-            index = self.test_dict['index']
-
-            img = DIP.Image(imageInput, n)
-            ans = eval(index)
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def setitem(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-            index = self.test_dict['index']
-            target = eval(self.test_dict['target'])
-
-            img = DIP.Image(imageInput, n)
-            exec(index + ' = target')
-            ans = str(img)
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def his(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-
-            img = DIP.Image(imageInput, n)
-            ans = img.his()
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def hiseq(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-
-            img = DIP.Image(imageInput, n)
-            ans = str(img.hiseq())
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def kernel(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-            kernel = eval(self.test_dict['kernel'])
-
-            img = DIP.Image(imageInput, n)
-            ans = str(img * kernel)
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
-    
-    def huffman(self):
-        try:
-            import DIP
-            correctAns = eval(self.solution_dict['solution'])
-
-            imageInput = eval(self.test_dict['imageInput'])
-            n = eval(self.test_dict['n'])
-
-            img = DIP.Image(imageInput, n)
-            ans = img.huffman()
-        except BaseException as e:
-            ans = e
-        return ans, correctAns
     
     def consecutiveTest(self):
         try:
-            import DIP
+            import ...
             correctAns = eval(self.solution_dict['solution'])
 
             exec(self.test_dict['code'])
@@ -279,6 +119,8 @@ class TestClass(object):
         except BaseException as e:
             ans = e
         return ans, correctAns
+    
+    # ================= The end of the algorithms run during the test =================#
 
     
 
