@@ -1,0 +1,9 @@
+name: "Addition"
+depends: ""
+max_points: "3"
+timeout: "10"
+class: "AccumulatedCreditQuestion"
+testset: """
+2: addition1
+1: addition1,addition2,addition3
+"""
