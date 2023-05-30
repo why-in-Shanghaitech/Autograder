@@ -624,9 +624,6 @@ def md5(obj):
 # code to handle timeouts
 #  - Support timeout on windows
 #  - TimeoutFuncton is now reentrant.
-# The downside is that, the script could exit after timeout if and only if
-# the student code executes another line of code. That menas time.sleep
-# will hang up the process after timeout.
 #
 import functools
 import threading
@@ -705,6 +702,7 @@ class TimeoutFunction:
             }
 
             t = KThread(target=to_do, args=(), kwargs=_kwargs)
+            t.setDaemon(True)
             t.start()
 
             try:
