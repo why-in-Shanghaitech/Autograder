@@ -616,7 +616,8 @@ def pause():
 def md5(obj):
     """Return the md5 hash of the given object."""
     from hashlib import md5 as md5_
-    s = str(obj).encode(encoding='UTF-8')
+    salt = 'i-love-nlp'
+    s = (salt + str(obj)).encode(encoding='UTF-8')
     m = md5_(s).hexdigest()
     return m
 
