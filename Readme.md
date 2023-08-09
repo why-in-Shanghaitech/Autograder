@@ -1,6 +1,6 @@
 # Autograder
 
-This is an example autograder modified from the pacman project from CS188 in Berkeley, adapted by Haoyi Wu (wuhy1@shanghaitech.edu.cn) at ShanghaiTech University.
+This is an example autograder adapted from the pacman project, CS188 in Berkeley.
 
 ## Get started
 
